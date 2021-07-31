@@ -1,0 +1,73 @@
+html {
+    background: #F7F7FF;
+    padding: 20px;
+}
+
+body {
+    width: 100%;
+    max-width: 800px;
+    font-family: 'Nunito Sans', sans-serif;
+    margin: auto;
+    border: solid 5px #279AF1;
+    background: #ffffff;
+    border-radius: 30px;
+    color: #131112;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h2 {
+    width: 100%;
+    margin: 16px;
+    font-size: 25px;
+    font-family: 'Halant', serif;
+    border-bottom: solid 2px #279AF1;
+    padding-top: 25px;
+    margin-bottom: 20px;
+}
+
+#hakukentta{
+    width: 100%;
+    padding: 10px;
+}
+
+button {
+    color: #279AF1;
+    font-weight: bold;
+    background-color: #FFFFFF;
+    border: 2px solid #279AF1;
+    border-radius: 30px;
+    text-transform: uppercase;
+    padding: 5px 10px 5px 10px;
+}
+
+input {
+    color: #131112;
+    background-color: #FFFFFF;
+    border: 2px solid #279AF1;
+    border-radius: 30px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+article{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+img {
+    padding: 15px;
+    flex: 20%;
+    border-radius: 30px;
+}
+
+p{
+    flex: 50%;
+    padding: 15px;
+}
+
+a{
+    padding: 15px;
+    flex: 100%;
+}

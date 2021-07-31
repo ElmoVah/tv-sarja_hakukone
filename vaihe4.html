@@ -1,0 +1,71 @@
+<!-- Vaihe 4 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vaihe 4</title>
+    <link rel="stylesheet" type="text/css" href="v4.css">
+    <link href="https://fonts.googleapis.com/css2?family=Halant:wght@600&family=Nunito+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="hakukentta">
+<input id="hakuteksti" type="text">
+<button id="hakunappi">Hae sarja</button>
+</div>
+
+<script>
+  const nappi = document.getElementById("hakunappi");
+  nappi.addEventListener('click', haeTiedot);
+
+  function haeTiedot(evt){
+    const hakusana = document.getElementById("hakuteksti").value;
+    const uri = `http://api.tvmaze.com/search/shows?q=${hakusana}`;
+
+    const tiedot = document.getElementById("tiedot");
+    tiedot.innerHTML = ""; //poistetaan mahdollinen edellinen haku
+
+    fetch(uri)
+    .then(vastaus => vastaus.json())
+    .then(json => tulosta(json))
+    .catch(error => console.log(error));
+
+    function tulosta(json){
+      for (let alkio of json){
+        console.log(alkio);
+        const artikkeli = document.createElement("article");
+        const h2 = document.createElement("h2");
+        h2.innerText = alkio.show.name;
+        artikkeli.appendChild(h2);
+
+        try {
+          const kuva = document.createElement('img');
+          kuva.src = alkio.show.image.medium;
+          artikkeli.appendChild(kuva);
+        }
+        catch (e) {
+          const p = document.createElement("p");
+          p.innerText = "Kuvaa ei saatavilla";
+          artikkeli.appendChild(p);
+        }
+
+        artikkeli.innerHTML += alkio.show.summary;
+
+        const genret = document.createElement("p");
+        genret.innerHTML = `Genre: ${alkio.show.genres.join(", ")}`;
+        artikkeli.appendChild(genret);
+
+        const linkki = document.createElement('a');
+        linkki.innerText = "Kotisivu";
+        linkki.href = alkio.show.officialSite;
+        artikkeli.appendChild(linkki);
+
+        tiedot.appendChild(artikkeli);
+      }
+    }
+    document.getElementById("hakuteksti").value = "";
+  }
+</script>
+<main id="tiedot">
+</main>
+</body>
+</html>
